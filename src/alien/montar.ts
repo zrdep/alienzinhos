@@ -1,13 +1,4 @@
-import type { Paleta, Peca } from "./pecas.js";
-
-export interface Escolha {
-  rosto: Peca;
-  paleta: Paleta;
-  boca: Peca;
-  olhos: Peca;
-  extras: Peca[];
-  chapeu?: Peca;
-}
+import type { Escolha, Paleta, Peca } from "../tipos.js";
 
 function conteudo(svg: string): string {
   const achado = svg.match(/<svg[^>]*>([\s\S]*)<\/svg>/);

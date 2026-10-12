@@ -1,27 +1,7 @@
-import type { Catalogo, Peca } from "./pecas.js";
-import type { Escolha } from "./montar.js";
+import type { Catalogo, Escolha, Peca } from "../tipos.js";
+import { criarAleatorio } from "./aleatorio.js";
 
 const CATEGORIAS_EXTRAS = ["bochechas", "rosto", "flutuante", "pescoco"];
-
-function hash(texto: string): number {
-  let h = 2166136261;
-  for (let i = 0; i < texto.length; i++) {
-    h ^= texto.charCodeAt(i);
-    h = Math.imul(h, 16777619);
-  }
-  return h >>> 0;
-}
-
-function criarAleatorio(seed: string): () => number {
-  let estado = hash(seed);
-  return () => {
-    estado = (estado + 0x6d2b79f5) >>> 0;
-    let t = estado;
-    t = Math.imul(t ^ (t >>> 15), t | 1);
-    t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
-    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
-  };
-}
 
 export function sortearAlien(seed: string, { pecas, paletas }: Catalogo): Escolha {
   const aleatorio = criarAleatorio(seed);

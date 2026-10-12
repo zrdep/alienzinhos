@@ -1,37 +1,7 @@
 import { readdir, readFile } from "node:fs/promises";
+import { CAMADAS, type Camada, type Catalogo, type Paleta, type Peca } from "../tipos.js";
 
-const RAIZ = new URL("../", import.meta.url);
-
-export const CAMADAS = [
-  "rostos",
-  "bocas",
-  "olhos",
-  "olhos-animados",
-  "extras",
-  "chapeus",
-  "chapeus-animados",
-] as const;
-
-export type Camada = (typeof CAMADAS)[number];
-
-export interface Peca {
-  id: string;
-  camada: Camada;
-  svg: string;
-  animado: boolean;
-  categoria?: string;
-  cobre?: string[];
-}
-
-export interface Paleta {
-  id: string;
-  cores: Record<string, string>;
-}
-
-export interface Catalogo {
-  pecas: Record<Camada, Peca[]>;
-  paletas: Paleta[];
-}
+const RAIZ = new URL("../../", import.meta.url);
 
 interface InfoExtra {
   id: string;
