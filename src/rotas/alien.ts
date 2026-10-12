@@ -4,11 +4,16 @@ import { montarAlien } from "../alien/montar.js";
 import { sortearAlien } from "../alien/sortear.js";
 
 const TAMANHO_PADRAO = 256;
+const DESLIGADO = new Set(["nao", "não", "false", "0", "off"]);
 
 function lerTamanho(valor?: string): number {
   const numero = Number(valor ?? TAMANHO_PADRAO);
   if (!Number.isFinite(numero)) return TAMANHO_PADRAO;
   return Math.min(1024, Math.max(16, Math.round(numero)));
+}
+
+function lerFundo(valor?: string): boolean {
+  return !DESLIGADO.has((valor ?? "").trim().toLowerCase());
 }
 
 export function rotasAlien(catalogo: Catalogo) {
@@ -17,7 +22,9 @@ export function rotasAlien(catalogo: Catalogo) {
   rotas.get("/:seed", (c) => {
     const seed = c.req.param("seed").slice(0, 100);
     const tamanho = lerTamanho(c.req.query("tamanho"));
-    const svg = montarAlien(sortearAlien(seed, catalogo), tamanho);
+    const escolha = sortearAlien(seed, catalogo);
+    if (!lerFundo(c.req.query("fundo"))) escolha.fundo = undefined;
+    const svg = montarAlien(escolha, tamanho);
 
     return c.body(svg, 200, {
       "Content-Type": "image/svg+xml; charset=utf-8",
