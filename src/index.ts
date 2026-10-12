@@ -1,8 +1,21 @@
+import { mkdir, writeFile } from "node:fs/promises";
 import { carregarCatalogo } from "./pecas.js";
+import { montarAlien } from "./montar.js";
 
-const catalogo = await carregarCatalogo();
+const { pecas, paletas } = await carregarCatalogo();
 
-for (const [camada, lista] of Object.entries(catalogo.pecas)) {
-  console.log(camada.padEnd(18), lista.length);
-}
-console.log("paletas".padEnd(18), catalogo.paletas.length);
+const svg = montarAlien(
+  {
+    rosto: pecas.rostos[2],
+    paleta: paletas[7],
+    boca: pecas.bocas[1],
+    olhos: pecas["olhos-animados"][0],
+    extras: [pecas.extras[0]],
+    chapeu: pecas["chapeus-animados"][0],
+  },
+  256,
+);
+
+await mkdir("saida", { recursive: true });
+await writeFile("saida/exemplo.svg", svg);
+console.log("saida/exemplo.svg criado");
