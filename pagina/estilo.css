@@ -1,0 +1,54 @@
+:root {
+  --fundo: #010409;
+  --janela: #0d1117;
+  --barra: #161b22;
+  --borda: #30363d;
+  --texto: #c9d1d9;
+  --fraco: #8b949e;
+  --verde: #7ee787;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  background: var(--fundo);
+  color: var(--texto);
+  font: 15px/1.5 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+main { width: 100%; max-width: 520px; }
+.janela { background: var(--janela); border: 1px solid var(--borda); border-radius: 12px; overflow: hidden; }
+.barra {
+  display: flex; align-items: center; gap: 8px;
+  padding: 12px 14px;
+  background: var(--barra);
+  border-bottom: 1px solid var(--borda);
+  color: var(--fraco); font-size: 13px;
+}
+.barra i { width: 12px; height: 12px; border-radius: 50%; background: var(--borda); }
+.barra span { flex: 1; text-align: center; margin-right: 52px; }
+.corpo { padding: 24px; }
+label { display: flex; align-items: center; white-space: nowrap; }
+.p { color: var(--verde); margin-right: 1ch; }
+input {
+  flex: 1; min-width: 0;
+  background: none; border: 0; outline: 0;
+  color: var(--verde); caret-color: var(--texto);
+  font: inherit;
+}
+input::placeholder { color: var(--borda); }
+.info { color: var(--fraco); min-height: 1.5em; margin: 4px 0 12px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+#alien { width: 100%; max-width: 300px; aspect-ratio: 1; margin: 0 auto; }
+#alien svg { width: 100%; height: 100%; display: block; }
+.acoes { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-top: 16px; }
+button {
+  background: none; border: 1px solid var(--borda); border-radius: 6px;
+  color: var(--texto); font: inherit; font-size: 13px;
+  padding: 6px 12px; cursor: pointer;
+}
+button:hover, button:focus-visible { border-color: var(--verde); color: var(--verde); outline: 0; }
+footer { text-align: center; color: var(--fraco); font-size: 12px; margin-top: 16px; }
+footer a { color: inherit; }
