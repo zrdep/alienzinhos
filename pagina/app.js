@@ -74,6 +74,9 @@ function sortearAlien(seed, { pecas, paletas }) {
   return { rosto, paleta, boca, olhos, extras, chapeu, fundo };
 }
 
+// no site o fundo vira um gif atrás do alien: o svg animado do fundo pesava demais pra renderizar
+const gifDe = (fundo) => fundo.arquivo.replace("assets/fundos/", "assets/fundos-gif/").replace(/\.svg$/, ".gif");
+
 const conteudo = (svg) =>
   svg.match(/<svg[^>]*>([\s\S]*)<\/svg>/)[1].replace(/<metadata>[\s\S]*?<\/metadata>/, "").trim();
 
@@ -98,7 +101,7 @@ const info = document.querySelector("#info");
 const alien = document.querySelector("#alien");
 const botaoFundo = document.querySelector("#alternar-fundo");
 let comFundo = new URLSearchParams(location.search).get("fundo") !== "nao";
-let svgAtual = "";
+let escolhaAtual;
 let pedido = 0;
 let espera;
 
@@ -107,11 +110,12 @@ async function mostrar() {
   const meu = ++pedido;
   const escolha = sortearAlien(seed, catalogo);
   if (!comFundo) escolha.fundo = undefined;
-  const svg = await montarAlien(escolha);
+  const svg = await montarAlien({ ...escolha, fundo: undefined });
   if (meu !== pedido) return;
 
-  svgAtual = svg;
+  escolhaAtual = escolha;
   alien.innerHTML = svg;
+  alien.style.backgroundImage = escolha.fundo ? `url("${gifDe(escolha.fundo)}")` : "";
   info.textContent = `→ ${escolha.rosto.id} · ${escolha.paleta.id} · ${escolha.chapeu?.id ?? "sem chapéu"} · ${escolha.fundo?.id ?? "sem fundo"}`;
 
   const url = new URL(location.href);
@@ -141,9 +145,11 @@ botaoFundo.addEventListener("click", () => {
   mostrar();
 });
 
-document.querySelector("#baixar").addEventListener("click", () => {
+// o download continua sendo o svg completo, com o fundo animado em svg
+document.querySelector("#baixar").addEventListener("click", async () => {
+  const svg = await montarAlien(escolhaAtual);
   const link = document.createElement("a");
-  link.href = URL.createObjectURL(new Blob([svgAtual], { type: "image/svg+xml" }));
+  link.href = URL.createObjectURL(new Blob([svg], { type: "image/svg+xml" }));
   link.download = `alien-${campo.value.trim() || "zrdep"}.svg`;
   link.click();
   URL.revokeObjectURL(link.href);
