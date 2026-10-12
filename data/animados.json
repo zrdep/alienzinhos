@@ -122,5 +122,127 @@
       "duracaoMs": 2400,
       "quadros": 4
     }
+  ],
+  "fundos": [
+    {
+      "id": "espaco-estrelas",
+      "arquivo": "assets/fundos/01-espaco-estrelas.svg",
+      "duracaoMs": 1600,
+      "quadros": 8
+    },
+    {
+      "id": "estrelas-cadentes",
+      "arquivo": "assets/fundos/02-estrelas-cadentes.svg",
+      "duracaoMs": 2400,
+      "quadros": 16
+    },
+    {
+      "id": "nebulosa",
+      "arquivo": "assets/fundos/03-nebulosa.svg",
+      "duracaoMs": 2400,
+      "quadros": 8
+    },
+    {
+      "id": "planeta-orbita",
+      "arquivo": "assets/fundos/04-planeta-orbita.svg",
+      "duracaoMs": 3200,
+      "quadros": 16
+    },
+    {
+      "id": "aurora",
+      "arquivo": "assets/fundos/05-aurora.svg",
+      "duracaoMs": 2400,
+      "quadros": 8
+    },
+    {
+      "id": "ovnis",
+      "arquivo": "assets/fundos/06-ovnis.svg",
+      "duracaoMs": 6400,
+      "quadros": 4
+    },
+    {
+      "id": "vaga-lumes",
+      "arquivo": "assets/fundos/07-vaga-lumes.svg",
+      "duracaoMs": 1600,
+      "quadros": 8
+    },
+    {
+      "id": "por-do-sol",
+      "arquivo": "assets/fundos/08-por-do-sol.svg",
+      "duracaoMs": 1200,
+      "quadros": 6
+    },
+    {
+      "id": "oceano",
+      "arquivo": "assets/fundos/09-oceano.svg",
+      "duracaoMs": 2400,
+      "quadros": 1
+    },
+    {
+      "id": "bolhas",
+      "arquivo": "assets/fundos/10-bolhas.svg",
+      "duracaoMs": 3200,
+      "quadros": 1
+    },
+    {
+      "id": "chuva",
+      "arquivo": "assets/fundos/11-chuva.svg",
+      "duracaoMs": 800,
+      "quadros": 4
+    },
+    {
+      "id": "neve",
+      "arquivo": "assets/fundos/12-neve.svg",
+      "duracaoMs": 6400,
+      "quadros": 1
+    },
+    {
+      "id": "synthwave",
+      "arquivo": "assets/fundos/13-synthwave.svg",
+      "duracaoMs": 900,
+      "quadros": 6
+    },
+    {
+      "id": "codigo-verde",
+      "arquivo": "assets/fundos/14-codigo-verde.svg",
+      "duracaoMs": 3200,
+      "quadros": 1
+    },
+    {
+      "id": "radar",
+      "arquivo": "assets/fundos/15-radar.svg",
+      "duracaoMs": 2400,
+      "quadros": 12
+    },
+    {
+      "id": "pista-disco",
+      "arquivo": "assets/fundos/16-pista-disco.svg",
+      "duracaoMs": 1000,
+      "quadros": 4
+    },
+    {
+      "id": "arco-iris",
+      "arquivo": "assets/fundos/17-arco-iris.svg",
+      "duracaoMs": 1200,
+      "quadros": 1
+    },
+    {
+      "id": "xadrez",
+      "arquivo": "assets/fundos/18-xadrez.svg",
+      "duracaoMs": 1600,
+      "quadros": 1
+    },
+    {
+      "id": "raios-sol",
+      "arquivo": "assets/fundos/19-raios-sol.svg",
+      "duracaoMs": 1600,
+      "quadros": 4
+    },
+    {
+      "id": "coracoes",
+      "arquivo": "assets/fundos/20-coracoes.svg",
+      "duracaoMs": 6400,
+      "quadros": 1
+    }
   ]
 }
