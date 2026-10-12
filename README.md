@@ -28,14 +28,16 @@ mesma seed, mesmo alien. sempre.
 
 10 rostos · 20 paletas · 10 bocas · 29 extras
 20 olhos · 20 chapéus (metade animada)
-+2 bilhões de combinações
+20 fundos animados
++40 bilhões de combinações
 ```
 
 ### <img src="docs/zorp/ideia.svg" width="28" align="center" alt=""> uso
 
 ```bash
-GET /alien/:seed                # svg do alien
+GET /alien/:seed                # svg do alien (com fundo)
 GET /alien/:seed?tamanho=512    # 16 a 1024 · padrão 256
+GET /alien/:seed?fundo=nao      # sem fundo, transparente
 ```
 
 como a resposta é uma imagem, dá pra colocar em qualquer lugar:
@@ -43,6 +45,19 @@ como a resposta é uma imagem, dá pra colocar em qualquer lugar:
 ```md
 ![meu alien](https://seu-dominio/alien/seu-nome)
 ```
+
+### <img src="docs/zorp/sono.svg" width="28" align="center" alt=""> fundos
+
+<img src="docs/previews/preview-fundos.gif" alt="os 20 fundos animados" width="100%">
+
+```txt
+espaco-estrelas · estrelas-cadentes · nebulosa · planeta-orbita
+aurora · ovnis · vaga-lumes · por-do-sol · oceano · bolhas
+chuva · neve · synthwave · codigo-verde · radar
+pista-disco · arco-iris · xadrez · raios-sol · coracoes
+```
+
+todo alien ganha um fundo. ele é sorteado por último, então quem já tinha um alien continua com o mesmo, só que agora com fundo.
 
 ### <img src="docs/zorp/festa.svg" width="28" align="center" alt=""> rodando
 
@@ -61,13 +76,14 @@ seed ─► hash ─► sorteio ─┬─ rosto + paleta
                          ├─ boca
                          ├─ olhos
                          ├─ extras
-                         └─ chapéu
+                         ├─ chapéu
+                         └─ fundo
                               │
                               ▼
                          svg 64×64
 ```
 
-as camadas são empilhadas nessa ordem, e as animações rodam só com css dentro do svg.
+as camadas são empilhadas nessa ordem, com o fundo indo lá pra trás. as animações rodam só com css dentro do svg.
 
 ### <img src="docs/zorp/estiloso.svg" width="28" align="center" alt=""> estrutura
 
