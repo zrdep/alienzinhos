@@ -23,6 +23,7 @@ export function montarAlien(escolha: Escolha, tamanho = 64): string {
     ...escolha.extras.map((e) => conteudo(e.svg)),
   ];
   if (escolha.chapeu) camadas.push(conteudo(escolha.chapeu.svg));
+  if (escolha.fundo) camadas.unshift(conteudo(escolha.fundo.svg));
 
   return [
     `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="${tamanho}" height="${tamanho}" shape-rendering="crispEdges">`,

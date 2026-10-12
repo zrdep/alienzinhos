@@ -32,7 +32,7 @@ async function carregarCamada(camada: Camada, infoExtras: Map<string, InfoExtra>
         id,
         camada,
         svg,
-        animado: camada.endsWith("-animados"),
+        animado: camada.endsWith("-animados") || camada === "fundos",
         categoria: info?.categoria,
         cobre: info?.cobre,
       };

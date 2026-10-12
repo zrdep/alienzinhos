@@ -26,5 +26,8 @@ export function sortearAlien(seed: string, { pecas, paletas }: Catalogo): Escolh
     chapeu = chance(0.25) ? escolher(pecas["chapeus-animados"]) : escolher(pecas.chapeus);
   }
 
-  return { rosto, paleta, boca, olhos, extras, chapeu };
+  // sorteado por último pra não mudar os aliens que já existiam
+  const fundo = escolher(pecas.fundos);
+
+  return { rosto, paleta, boca, olhos, extras, chapeu, fundo };
 }

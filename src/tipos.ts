@@ -6,6 +6,7 @@ export const CAMADAS = [
   "extras",
   "chapeus",
   "chapeus-animados",
+  "fundos",
 ] as const;
 
 export type Camada = (typeof CAMADAS)[number];
@@ -36,4 +37,5 @@ export interface Escolha {
   olhos: Peca;
   extras: Peca[];
   chapeu?: Peca;
+  fundo?: Peca;
 }
