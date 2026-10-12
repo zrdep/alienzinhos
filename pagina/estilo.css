@@ -41,7 +41,7 @@ input {
 }
 input::placeholder { color: var(--borda); }
 .info { color: var(--fraco); min-height: 1.5em; margin: 4px 0 12px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-#alien { width: 100%; max-width: 300px; aspect-ratio: 1; margin: 0 auto; }
+#alien { width: 100%; max-width: 300px; aspect-ratio: 1; margin: 0 auto; border-radius: 16px; overflow: hidden; }
 #alien svg { width: 100%; height: 100%; display: block; }
 .acoes { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-top: 16px; }
 button {
@@ -49,6 +49,7 @@ button {
   color: var(--texto); font: inherit; font-size: 13px;
   padding: 6px 12px; cursor: pointer;
 }
+#alternar-fundo[aria-pressed="true"] { color: var(--verde); }
 button:hover, button:focus-visible { border-color: var(--verde); color: var(--verde); outline: 0; }
 footer { text-align: center; color: var(--fraco); font-size: 12px; margin-top: 16px; }
 footer a { color: inherit; }

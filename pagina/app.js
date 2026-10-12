@@ -18,6 +18,7 @@ const catalogo = {
     extras: extras.extras,
     chapeus: acessorios.chapeus,
     "chapeus-animados": animados.chapeus,
+    fundos: animados.fundos,
   },
   paletas: paletas.paletas,
 };
@@ -67,7 +68,10 @@ function sortearAlien(seed, { pecas, paletas }) {
     chapeu = chance(0.25) ? escolher(pecas["chapeus-animados"]) : escolher(pecas.chapeus);
   }
 
-  return { rosto, paleta, boca, olhos, extras, chapeu };
+  // sorteado por último pra não mudar os aliens que já existiam
+  const fundo = escolher(pecas.fundos);
+
+  return { rosto, paleta, boca, olhos, extras, chapeu, fundo };
 }
 
 const conteudo = (svg) =>
@@ -80,6 +84,7 @@ async function montarAlien(escolha, tamanho = 256) {
   const camadas = (await Promise.all(lista.map(svgDe))).map(conteudo);
   const estilo = Object.entries(escolha.paleta.cores).map(([classe, cor]) => `.${classe}{fill:${cor}}`).join("");
   camadas[0] = camadas[0].replace(/<style>[\s\S]*?<\/style>/, `<style>${estilo}</style>`);
+  if (escolha.fundo) camadas.unshift(conteudo(await svgDe(escolha.fundo)));
 
   return [
     `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="${tamanho}" height="${tamanho}" shape-rendering="crispEdges">`,
@@ -91,6 +96,8 @@ async function montarAlien(escolha, tamanho = 256) {
 const campo = document.querySelector("#seed");
 const info = document.querySelector("#info");
 const alien = document.querySelector("#alien");
+const botaoFundo = document.querySelector("#alternar-fundo");
+let comFundo = new URLSearchParams(location.search).get("fundo") !== "nao";
 let svgAtual = "";
 let pedido = 0;
 let espera;
@@ -99,15 +106,17 @@ async function mostrar() {
   const seed = campo.value.trim().slice(0, 100);
   const meu = ++pedido;
   const escolha = sortearAlien(seed, catalogo);
+  if (!comFundo) escolha.fundo = undefined;
   const svg = await montarAlien(escolha);
   if (meu !== pedido) return;
 
   svgAtual = svg;
   alien.innerHTML = svg;
-  info.textContent = `→ ${escolha.rosto.id} · ${escolha.paleta.id} · ${escolha.chapeu?.id ?? "sem chapéu"}`;
+  info.textContent = `→ ${escolha.rosto.id} · ${escolha.paleta.id} · ${escolha.chapeu?.id ?? "sem chapéu"} · ${escolha.fundo?.id ?? "sem fundo"}`;
 
   const url = new URL(location.href);
   seed ? url.searchParams.set("seed", seed) : url.searchParams.delete("seed");
+  comFundo ? url.searchParams.delete("fundo") : url.searchParams.set("fundo", "nao");
   history.replaceState(null, "", url);
 }
 
@@ -118,6 +127,17 @@ campo.addEventListener("input", () => {
 
 document.querySelector("#aleatorio").addEventListener("click", () => {
   campo.value = Math.random().toString(36).slice(2, 8);
+  mostrar();
+});
+
+function marcarFundo() {
+  botaoFundo.textContent = comFundo ? "[x] fundo" : "[ ] fundo";
+  botaoFundo.setAttribute("aria-pressed", String(comFundo));
+}
+
+botaoFundo.addEventListener("click", () => {
+  comFundo = !comFundo;
+  marcarFundo();
   mostrar();
 });
 
@@ -136,4 +156,5 @@ document.querySelector("#copiar").addEventListener("click", async (e) => {
 });
 
 campo.value = new URLSearchParams(location.search).get("seed") ?? "zrdep";
+marcarFundo();
 mostrar();
