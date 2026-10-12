@@ -1,3 +1,5 @@
+import { gerarGif } from "./gif.js";
+
 const json = (caminho) => fetch(caminho).then((r) => r.json());
 const textos = new Map();
 const svgDe = (peca) => {
@@ -153,6 +155,25 @@ document.querySelector("#baixar").addEventListener("click", async () => {
   link.download = `alien-${campo.value.trim() || "zrdep"}.svg`;
   link.click();
   URL.revokeObjectURL(link.href);
+});
+
+// gif animado com o alien e o fundo, gerado no navegador
+const botaoGif = document.querySelector("#baixar-gif");
+botaoGif.addEventListener("click", async () => {
+  if (botaoGif.disabled) return;
+  botaoGif.disabled = true;
+  botaoGif.textContent = "gerando...";
+  try {
+    const gif = await gerarGif(await montarAlien(escolhaAtual, 64));
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(gif);
+    link.download = `alien-${campo.value.trim() || "zrdep"}.gif`;
+    link.click();
+    setTimeout(() => URL.revokeObjectURL(link.href), 1000);
+  } finally {
+    botaoGif.disabled = false;
+    botaoGif.textContent = "baixar gif";
+  }
 });
 
 document.querySelector("#copiar").addEventListener("click", async (e) => {
