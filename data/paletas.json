@@ -1,0 +1,224 @@
+{
+  "paletas": [
+    {
+      "id": "verde",
+      "cores": {
+        "base": "#7ed957",
+        "sombra": "#68c425",
+        "brilho": "#9de58d",
+        "contorno": "#1b3012",
+        "acento": "#f2e94e",
+        "acento-sombra": "#e3be11"
+      }
+    },
+    {
+      "id": "lima",
+      "cores": {
+        "base": "#b6f04a",
+        "sombra": "#b4e60d",
+        "brilho": "#c2f587",
+        "contorno": "#263012",
+        "acento": "#ff7aa2",
+        "acento-sombra": "#ff2e86"
+      }
+    },
+    {
+      "id": "menta",
+      "cores": {
+        "base": "#6fe0b0",
+        "sombra": "#2eda7c",
+        "brilho": "#a6ecd6",
+        "contorno": "#123023",
+        "acento": "#ff8c69",
+        "acento-sombra": "#ff361c"
+      }
+    },
+    {
+      "id": "turquesa",
+      "cores": {
+        "base": "#3fc1c9",
+        "sombra": "#259b94",
+        "brilho": "#73c6d8",
+        "contorno": "#122e30",
+        "acento": "#ffb347",
+        "acento-sombra": "#f97500"
+      }
+    },
+    {
+      "id": "ciano",
+      "cores": {
+        "base": "#5ad1f5",
+        "sombra": "#11ddf7",
+        "brilho": "#99d7f9",
+        "contorno": "#122930",
+        "acento": "#ffd84d",
+        "acento-sombra": "#ffa900"
+      }
+    },
+    {
+      "id": "azul",
+      "cores": {
+        "base": "#5b8def",
+        "sombra": "#1478ef",
+        "brilho": "#97acf5",
+        "contorno": "#121c30",
+        "acento": "#ffcc33",
+        "acento-sombra": "#e59100"
+      }
+    },
+    {
+      "id": "anil",
+      "cores": {
+        "base": "#6c6cf0",
+        "sombra": "#253eef",
+        "brilho": "#b2a8f6",
+        "contorno": "#121230",
+        "acento": "#7af0ff",
+        "acento-sombra": "#2efffd"
+      }
+    },
+    {
+      "id": "roxo",
+      "cores": {
+        "base": "#b07de8",
+        "sombra": "#773be3",
+        "brilho": "#dab5f2",
+        "contorno": "#201230",
+        "acento": "#f7a8e0",
+        "acento-sombra": "#f162d8"
+      }
+    },
+    {
+      "id": "lilas",
+      "cores": {
+        "base": "#c7b8ff",
+        "sombra": "#7e71ff",
+        "brilho": "#fcfaff",
+        "contorno": "#191230",
+        "acento": "#4fd8e8",
+        "acento-sombra": "#1bcfcd"
+      }
+    },
+    {
+      "id": "magenta",
+      "cores": {
+        "base": "#e05ad8",
+        "sombra": "#c820d2",
+        "brilho": "#ea92db",
+        "contorno": "#30122e",
+        "acento": "#9be35a",
+        "acento-sombra": "#88ce23"
+      }
+    },
+    {
+      "id": "rosa",
+      "cores": {
+        "base": "#f58fb5",
+        "sombra": "#f4499d",
+        "brilho": "#faccd8",
+        "contorno": "#30121d",
+        "acento": "#6fd6ff",
+        "acento-sombra": "#22dbff"
+      }
+    },
+    {
+      "id": "coral",
+      "cores": {
+        "base": "#ff7f6b",
+        "sombra": "#ff2724",
+        "brilho": "#ffc2ad",
+        "contorno": "#301612",
+        "acento": "#5ad1f5",
+        "acento-sombra": "#12d8f1"
+      }
+    },
+    {
+      "id": "vermelho",
+      "cores": {
+        "base": "#ef5350",
+        "sombra": "#e90f25",
+        "brilho": "#f59b8d",
+        "contorno": "#301312",
+        "acento": "#fff1c1",
+        "acento-sombra": "#ffcf74"
+      }
+    },
+    {
+      "id": "laranja",
+      "cores": {
+        "base": "#ff9f43",
+        "sombra": "#fb5d00",
+        "brilho": "#ffcf85",
+        "contorno": "#302112",
+        "acento": "#5ce1e6",
+        "acento-sombra": "#21d5c6"
+      }
+    },
+    {
+      "id": "ambar",
+      "cores": {
+        "base": "#ffbf3f",
+        "sombra": "#f78700",
+        "brilho": "#ffe481",
+        "contorno": "#302612",
+        "acento": "#8e5cf7",
+        "acento-sombra": "#4113f3"
+      }
+    },
+    {
+      "id": "amarelo",
+      "cores": {
+        "base": "#ffd84d",
+        "sombra": "#ffaa06",
+        "brilho": "#fff48f",
+        "contorno": "#302a12",
+        "acento": "#ff6b9d",
+        "acento-sombra": "#ff1f85"
+      }
+    },
+    {
+      "id": "oliva",
+      "cores": {
+        "base": "#a3b84a",
+        "sombra": "#848b30",
+        "brilho": "#b1cb7a",
+        "contorno": "#2a3012",
+        "acento": "#ffe0a3",
+        "acento-sombra": "#ffb256"
+      }
+    },
+    {
+      "id": "areia",
+      "cores": {
+        "base": "#e3c48f",
+        "sombra": "#da9751",
+        "brilho": "#f0e5c4",
+        "contorno": "#302512",
+        "acento": "#6fb5ff",
+        "acento-sombra": "#22a8ff"
+      }
+    },
+    {
+      "id": "chocolate",
+      "cores": {
+        "base": "#a0704a",
+        "sombra": "#73452f",
+        "brilho": "#bd9b70",
+        "contorno": "#301f12",
+        "acento": "#ffd84d",
+        "acento-sombra": "#ffa900"
+      }
+    },
+    {
+      "id": "cinza-lua",
+      "cores": {
+        "base": "#b8c0cc",
+        "sombra": "#8a9fb3",
+        "brilho": "#dfe1e8",
+        "contorno": "#121e30",
+        "acento": "#ff6b6b",
+        "acento-sombra": "#ff1f39"
+      }
+    }
+  ]
+}

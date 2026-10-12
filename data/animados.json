@@ -1,0 +1,126 @@
+{
+  "chapeus": [
+    {
+      "id": "helice-girando",
+      "arquivo": "assets/chapeus-animados/01-helice-girando.svg",
+      "duracaoMs": 320,
+      "quadros": 4
+    },
+    {
+      "id": "festa-confete",
+      "arquivo": "assets/chapeus-animados/02-festa-confete.svg",
+      "duracaoMs": 480,
+      "quadros": 6
+    },
+    {
+      "id": "coroa-brilho",
+      "arquivo": "assets/chapeus-animados/03-coroa-brilho.svg",
+      "duracaoMs": 2400,
+      "quadros": 9
+    },
+    {
+      "id": "bruxa-balanco",
+      "arquivo": "assets/chapeus-animados/04-bruxa-balanco.svg",
+      "duracaoMs": 1600,
+      "quadros": 4
+    },
+    {
+      "id": "antena-sinal",
+      "arquivo": "assets/chapeus-animados/05-antena-sinal.svg",
+      "duracaoMs": 960,
+      "quadros": 4
+    },
+    {
+      "id": "aureola",
+      "arquivo": "assets/chapeus-animados/06-aureola.svg",
+      "duracaoMs": 960,
+      "quadros": 4
+    },
+    {
+      "id": "gorro-pompom",
+      "arquivo": "assets/chapeus-animados/07-gorro-pompom.svg",
+      "duracaoMs": 800,
+      "quadros": 5
+    },
+    {
+      "id": "cartola-coelho",
+      "arquivo": "assets/chapeus-animados/08-cartola-coelho.svg",
+      "duracaoMs": 2400,
+      "quadros": 5
+    },
+    {
+      "id": "nuvem-chuva",
+      "arquivo": "assets/chapeus-animados/09-nuvem-chuva.svg",
+      "duracaoMs": 480,
+      "quadros": 3
+    },
+    {
+      "id": "sirene",
+      "arquivo": "assets/chapeus-animados/10-sirene.svg",
+      "duracaoMs": 480,
+      "quadros": 2
+    }
+  ],
+  "olhos": [
+    {
+      "id": "piscar",
+      "arquivo": "assets/olhos-animados/01-piscar.svg",
+      "duracaoMs": 2400,
+      "quadros": 4
+    },
+    {
+      "id": "olhar-lados",
+      "arquivo": "assets/olhos-animados/02-olhar-lados.svg",
+      "duracaoMs": 2400,
+      "quadros": 5
+    },
+    {
+      "id": "brilhante-piscar",
+      "arquivo": "assets/olhos-animados/03-brilhante-piscar.svg",
+      "duracaoMs": 2400,
+      "quadros": 6
+    },
+    {
+      "id": "ciclope-olhando",
+      "arquivo": "assets/olhos-animados/04-ciclope-olhando.svg",
+      "duracaoMs": 2400,
+      "quadros": 7
+    },
+    {
+      "id": "coracao-pulsando",
+      "arquivo": "assets/olhos-animados/05-coracao-pulsando.svg",
+      "duracaoMs": 800,
+      "quadros": 4
+    },
+    {
+      "id": "espiral",
+      "arquivo": "assets/olhos-animados/06-espiral.svg",
+      "duracaoMs": 480,
+      "quadros": 4
+    },
+    {
+      "id": "estrelas",
+      "arquivo": "assets/olhos-animados/07-estrelas.svg",
+      "duracaoMs": 800,
+      "quadros": 2
+    },
+    {
+      "id": "sonolento-caindo",
+      "arquivo": "assets/olhos-animados/08-sonolento-caindo.svg",
+      "duracaoMs": 2400,
+      "quadros": 5
+    },
+    {
+      "id": "oculos-reflexo",
+      "arquivo": "assets/olhos-animados/09-oculos-reflexo.svg",
+      "duracaoMs": 2400,
+      "quadros": 6
+    },
+    {
+      "id": "piscadinha",
+      "arquivo": "assets/olhos-animados/10-piscadinha.svg",
+      "duracaoMs": 2400,
+      "quadros": 4
+    }
+  ]
+}

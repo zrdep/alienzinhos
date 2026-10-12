@@ -1,0 +1,92 @@
+{
+  "grade": {
+    "tamanho": 64,
+    "topoCabeca": 16,
+    "olhos": {
+      "y": [
+        26,
+        33
+      ],
+      "x": [
+        18,
+        45
+      ],
+      "esquerdo": [
+        18,
+        29
+      ],
+      "direito": [
+        34,
+        45
+      ]
+    },
+    "boca": {
+      "y": [
+        40,
+        45
+      ],
+      "x": [
+        24,
+        39
+      ]
+    }
+  },
+  "classesDeCor": [
+    "base",
+    "sombra",
+    "brilho",
+    "contorno",
+    "acento",
+    "acento-sombra"
+  ],
+  "corNeutra": {
+    "base": "#c8c8c8",
+    "sombra": "#9a9a9a",
+    "brilho": "#e6e6e6",
+    "contorno": "#2a2a2a",
+    "acento": "#8a8a8a",
+    "acento-sombra": "#666666"
+  },
+  "rostos": [
+    {
+      "id": "zorp",
+      "arquivo": "assets/rostos/01-zorp.svg"
+    },
+    {
+      "id": "brainy",
+      "arquivo": "assets/rostos/02-brainy.svg"
+    },
+    {
+      "id": "squidy",
+      "arquivo": "assets/rostos/03-squidy.svg"
+    },
+    {
+      "id": "pinky",
+      "arquivo": "assets/rostos/04-pinky.svg"
+    },
+    {
+      "id": "cubix",
+      "arquivo": "assets/rostos/05-cubix.svg"
+    },
+    {
+      "id": "rexi",
+      "arquivo": "assets/rostos/06-rexi.svg"
+    },
+    {
+      "id": "shroom",
+      "arquivo": "assets/rostos/07-shroom.svg"
+    },
+    {
+      "id": "gloop",
+      "arquivo": "assets/rostos/08-gloop.svg"
+    },
+    {
+      "id": "finn",
+      "arquivo": "assets/rostos/09-finn.svg"
+    },
+    {
+      "id": "krys",
+      "arquivo": "assets/rostos/10-krys.svg"
+    }
+  ]
+}

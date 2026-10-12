@@ -1,0 +1,128 @@
+{
+  "chapeus": [
+    {
+      "id": "cartola",
+      "arquivo": "assets/chapeus/01-cartola.svg"
+    },
+    {
+      "id": "cowboy",
+      "arquivo": "assets/chapeus/02-cowboy.svg"
+    },
+    {
+      "id": "festa",
+      "arquivo": "assets/chapeus/03-festa.svg"
+    },
+    {
+      "id": "coroa",
+      "arquivo": "assets/chapeus/04-coroa.svg"
+    },
+    {
+      "id": "gorro",
+      "arquivo": "assets/chapeus/05-gorro.svg"
+    },
+    {
+      "id": "bone",
+      "arquivo": "assets/chapeus/06-bone.svg"
+    },
+    {
+      "id": "bruxa",
+      "arquivo": "assets/chapeus/07-bruxa.svg"
+    },
+    {
+      "id": "helice",
+      "arquivo": "assets/chapeus/08-helice.svg"
+    },
+    {
+      "id": "chef",
+      "arquivo": "assets/chapeus/09-chef.svg"
+    },
+    {
+      "id": "viking",
+      "arquivo": "assets/chapeus/10-viking.svg"
+    }
+  ],
+  "olhos": [
+    {
+      "id": "redondo",
+      "arquivo": "assets/olhos/01-redondo.svg"
+    },
+    {
+      "id": "brilhante",
+      "arquivo": "assets/olhos/02-brilhante.svg"
+    },
+    {
+      "id": "ciclope",
+      "arquivo": "assets/olhos/03-ciclope.svg"
+    },
+    {
+      "id": "sonolento",
+      "arquivo": "assets/olhos/04-sonolento.svg"
+    },
+    {
+      "id": "bravo",
+      "arquivo": "assets/olhos/05-bravo.svg"
+    },
+    {
+      "id": "oculos",
+      "arquivo": "assets/olhos/06-oculos.svg"
+    },
+    {
+      "id": "xis",
+      "arquivo": "assets/olhos/07-xis.svg"
+    },
+    {
+      "id": "coracao",
+      "arquivo": "assets/olhos/08-coracao.svg"
+    },
+    {
+      "id": "tres-olhos",
+      "arquivo": "assets/olhos/09-tres-olhos.svg"
+    },
+    {
+      "id": "feliz",
+      "arquivo": "assets/olhos/10-feliz.svg"
+    }
+  ],
+  "bocas": [
+    {
+      "id": "sorriso",
+      "arquivo": "assets/bocas/01-sorriso.svg"
+    },
+    {
+      "id": "risada",
+      "arquivo": "assets/bocas/02-risada.svg"
+    },
+    {
+      "id": "reta",
+      "arquivo": "assets/bocas/03-reta.svg"
+    },
+    {
+      "id": "surpresa",
+      "arquivo": "assets/bocas/04-surpresa.svg"
+    },
+    {
+      "id": "presas",
+      "arquivo": "assets/bocas/05-presas.svg"
+    },
+    {
+      "id": "nervoso",
+      "arquivo": "assets/bocas/06-nervoso.svg"
+    },
+    {
+      "id": "lingua",
+      "arquivo": "assets/bocas/07-lingua.svg"
+    },
+    {
+      "id": "triste",
+      "arquivo": "assets/bocas/08-triste.svg"
+    },
+    {
+      "id": "gatinho",
+      "arquivo": "assets/bocas/09-gatinho.svg"
+    },
+    {
+      "id": "dentes",
+      "arquivo": "assets/bocas/10-dentes.svg"
+    }
+  ]
+}

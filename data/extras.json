@@ -1,0 +1,192 @@
+{
+  "categorias": [
+    "bochechas",
+    "rosto",
+    "flutuante",
+    "pescoco"
+  ],
+  "extras": [
+    {
+      "id": "bochechas-rosadas",
+      "categoria": "bochechas",
+      "cobre": [],
+      "arquivo": "assets/extras/01-bochechas-rosadas.svg"
+    },
+    {
+      "id": "sardas",
+      "categoria": "bochechas",
+      "cobre": [],
+      "arquivo": "assets/extras/02-sardas.svg"
+    },
+    {
+      "id": "olheiras",
+      "categoria": "bochechas",
+      "cobre": [],
+      "arquivo": "assets/extras/03-olheiras.svg"
+    },
+    {
+      "id": "band-aid",
+      "categoria": "bochechas",
+      "cobre": [],
+      "arquivo": "assets/extras/04-band-aid.svg"
+    },
+    {
+      "id": "lagrima",
+      "categoria": "bochechas",
+      "cobre": [],
+      "arquivo": "assets/extras/05-lagrima.svg"
+    },
+    {
+      "id": "cicatriz",
+      "categoria": "rosto",
+      "cobre": [
+        "olho-esquerdo"
+      ],
+      "arquivo": "assets/extras/06-cicatriz.svg"
+    },
+    {
+      "id": "bigode",
+      "categoria": "rosto",
+      "cobre": [],
+      "arquivo": "assets/extras/07-bigode.svg"
+    },
+    {
+      "id": "bigode-enrolado",
+      "categoria": "rosto",
+      "cobre": [],
+      "arquivo": "assets/extras/08-bigode-enrolado.svg"
+    },
+    {
+      "id": "cavanhaque",
+      "categoria": "rosto",
+      "cobre": [],
+      "arquivo": "assets/extras/09-cavanhaque.svg"
+    },
+    {
+      "id": "tapa-olho",
+      "categoria": "rosto",
+      "cobre": [
+        "olho-esquerdo"
+      ],
+      "arquivo": "assets/extras/10-tapa-olho.svg"
+    },
+    {
+      "id": "monoculo",
+      "categoria": "rosto",
+      "cobre": [
+        "olho-direito"
+      ],
+      "arquivo": "assets/extras/11-monoculo.svg"
+    },
+    {
+      "id": "cristal-testa",
+      "categoria": "rosto",
+      "cobre": [],
+      "arquivo": "assets/extras/12-cristal-testa.svg"
+    },
+    {
+      "id": "nariz-palhaco",
+      "categoria": "rosto",
+      "cobre": [],
+      "arquivo": "assets/extras/13-nariz-palhaco.svg"
+    },
+    {
+      "id": "narizinho",
+      "categoria": "rosto",
+      "cobre": [],
+      "arquivo": "assets/extras/14-narizinho.svg"
+    },
+    {
+      "id": "pinta",
+      "categoria": "rosto",
+      "cobre": [],
+      "arquivo": "assets/extras/15-pinta.svg"
+    },
+    {
+      "id": "gota-de-suor",
+      "categoria": "rosto",
+      "cobre": [],
+      "arquivo": "assets/extras/16-gota-de-suor.svg"
+    },
+    {
+      "id": "chiclete",
+      "categoria": "rosto",
+      "cobre": [
+        "boca"
+      ],
+      "arquivo": "assets/extras/17-chiclete.svg"
+    },
+    {
+      "id": "pirulito",
+      "categoria": "rosto",
+      "cobre": [],
+      "arquivo": "assets/extras/18-pirulito.svg"
+    },
+    {
+      "id": "zzz",
+      "categoria": "flutuante",
+      "cobre": [],
+      "arquivo": "assets/extras/19-zzz.svg"
+    },
+    {
+      "id": "coracoes",
+      "categoria": "flutuante",
+      "cobre": [],
+      "arquivo": "assets/extras/20-coracoes.svg"
+    },
+    {
+      "id": "estrelas",
+      "categoria": "flutuante",
+      "cobre": [],
+      "arquivo": "assets/extras/21-estrelas.svg"
+    },
+    {
+      "id": "exclamacao",
+      "categoria": "flutuante",
+      "cobre": [],
+      "arquivo": "assets/extras/22-exclamacao.svg"
+    },
+    {
+      "id": "interrogacao",
+      "categoria": "flutuante",
+      "cobre": [],
+      "arquivo": "assets/extras/23-interrogacao.svg"
+    },
+    {
+      "id": "nota-musical",
+      "categoria": "flutuante",
+      "cobre": [],
+      "arquivo": "assets/extras/24-nota-musical.svg"
+    },
+    {
+      "id": "lampada",
+      "categoria": "flutuante",
+      "cobre": [],
+      "arquivo": "assets/extras/25-lampada.svg"
+    },
+    {
+      "id": "raiva",
+      "categoria": "flutuante",
+      "cobre": [],
+      "arquivo": "assets/extras/26-raiva.svg"
+    },
+    {
+      "id": "gravata-borboleta",
+      "categoria": "pescoco",
+      "cobre": [],
+      "arquivo": "assets/extras/27-gravata-borboleta.svg"
+    },
+    {
+      "id": "cachecol",
+      "categoria": "pescoco",
+      "cobre": [],
+      "arquivo": "assets/extras/28-cachecol.svg"
+    },
+    {
+      "id": "medalha",
+      "categoria": "pescoco",
+      "cobre": [],
+      "arquivo": "assets/extras/29-medalha.svg"
+    }
+  ]
+}
