@@ -52,7 +52,21 @@ button {
   color: var(--texto); font: inherit; font-size: 13px;
   padding: 6px 12px; cursor: pointer;
 }
-#alternar-fundo[aria-pressed="true"] { color: var(--verde); }
+#alternar-fundo[aria-pressed="true"], #editar[aria-pressed="true"] { color: var(--verde); }
+.editor {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 10px 16px;
+  margin-top: 16px; padding-top: 16px; border-top: 1px dashed var(--borda);
+}
+.editor[hidden] { display: none; }
+.editor label { flex-direction: column; align-items: stretch; gap: 4px; color: var(--fraco); font-size: 12px; }
+select {
+  width: 100%; min-width: 0;
+  background: var(--barra); border: 1px solid var(--borda); border-radius: 6px;
+  color: var(--verde); font: inherit; font-size: 13px;
+  padding: 5px 8px; cursor: pointer;
+}
+select:hover, select:focus-visible { border-color: var(--verde); outline: 0; }
+@media (max-width: 400px) { .editor { grid-template-columns: 1fr; } }
 button:hover, button:focus-visible { border-color: var(--verde); color: var(--verde); outline: 0; }
 footer { text-align: center; color: var(--fraco); font-size: 12px; margin-top: 16px; }
 footer a { color: inherit; }

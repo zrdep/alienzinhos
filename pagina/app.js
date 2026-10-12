@@ -104,13 +104,15 @@ const alien = document.querySelector("#alien");
 const botaoFundo = document.querySelector("#alternar-fundo");
 let comFundo = new URLSearchParams(location.search).get("fundo") !== "nao";
 let escolhaAtual;
+let personalizado = null; // peças escolhidas à mão, por cima do alien sorteado pelo nome
 let pedido = 0;
 let espera;
 
 async function mostrar() {
   const seed = campo.value.trim().slice(0, 100);
   const meu = ++pedido;
-  const escolha = sortearAlien(seed, catalogo);
+  let escolha = sortearAlien(seed, catalogo);
+  if (personalizado) escolha = aplicar(escolha, personalizado);
   if (!comFundo) escolha.fundo = undefined;
   const svg = await montarAlien({ ...escolha, fundo: undefined });
   if (meu !== pedido) return;
@@ -118,21 +120,35 @@ async function mostrar() {
   escolhaAtual = escolha;
   alien.innerHTML = svg;
   alien.style.backgroundImage = escolha.fundo ? `url("${gifDe(escolha.fundo)}")` : "";
-  info.textContent = `→ ${escolha.rosto.id} · ${escolha.paleta.id} · ${escolha.chapeu?.id ?? "sem chapéu"} · ${escolha.fundo?.id ?? "sem fundo"}`;
+  info.textContent = `→ ${escolha.rosto.id} · ${escolha.paleta.id} · ${escolha.chapeu?.id ?? "sem chapéu"} · ${escolha.fundo?.id ?? "sem fundo"}${personalizado ? " · editado" : ""}`;
+  preencherEditor(escolha);
 
   const url = new URL(location.href);
   seed ? url.searchParams.set("seed", seed) : url.searchParams.delete("seed");
-  comFundo ? url.searchParams.delete("fundo") : url.searchParams.set("fundo", "nao");
+  for (const chave of ["rosto", "paleta", "olhos", "boca", "chapeu", "extras"]) url.searchParams.delete(chave);
+  if (personalizado) {
+    url.searchParams.set("rosto", escolha.rosto.id);
+    url.searchParams.set("paleta", escolha.paleta.id);
+    url.searchParams.set("olhos", escolha.olhos.id);
+    url.searchParams.set("boca", escolha.boca.id);
+    url.searchParams.set("chapeu", escolha.chapeu?.id ?? "nenhum");
+    url.searchParams.set("extras", escolha.extras.map((e) => e.id).join(","));
+  }
+  if (!comFundo) url.searchParams.set("fundo", "nao");
+  else if (personalizado) url.searchParams.set("fundo", escolha.fundo.id);
+  else url.searchParams.delete("fundo");
   history.replaceState(null, "", url);
 }
 
 campo.addEventListener("input", () => {
+  personalizado = null;
   clearTimeout(espera);
   espera = setTimeout(mostrar, 120);
 });
 
 document.querySelector("#aleatorio").addEventListener("click", () => {
   campo.value = Math.random().toString(36).slice(2, 8);
+  personalizado = null;
   mostrar();
 });
 
@@ -182,6 +198,118 @@ document.querySelector("#copiar").addEventListener("click", async (e) => {
   setTimeout(() => (e.target.textContent = "copiar link"), 1500);
 });
 
+// editor: um seletor por parte do alien; começa com o alien do nome e cada troca vira "editado"
+const editor = document.querySelector("#editor");
+const botaoEditar = document.querySelector("#editar");
+const extrasDa = (categoria) => catalogo.pecas.extras.filter((e) => e.categoria === categoria);
+const CAMPOS = [
+  { campo: "rosto", rotulo: "rosto", listas: [catalogo.pecas.rostos] },
+  { campo: "paleta", rotulo: "paleta", listas: [catalogo.paletas] },
+  { campo: "olhos", rotulo: "olhos", listas: [catalogo.pecas.olhos, catalogo.pecas["olhos-animados"]] },
+  { campo: "boca", rotulo: "boca", listas: [catalogo.pecas.bocas] },
+  { campo: "chapeu", rotulo: "chapéu", listas: [catalogo.pecas.chapeus, catalogo.pecas["chapeus-animados"]], opcional: true },
+  { campo: "fundo", rotulo: "fundo", listas: [catalogo.pecas.fundos], opcional: true },
+  { campo: "extra-bochechas", rotulo: "bochechas", listas: [extrasDa("bochechas")], opcional: true },
+  { campo: "extra-rosto", rotulo: "na cara", listas: [extrasDa("rosto")], opcional: true },
+  { campo: "extra-flutuante", rotulo: "flutuante", listas: [extrasDa("flutuante")], opcional: true },
+  { campo: "extra-pescoco", rotulo: "pescoço", listas: [extrasDa("pescoco")], opcional: true },
+];
+const seletores = {};
+
+for (const { campo, rotulo, listas, opcional } of CAMPOS) {
+  const select = document.createElement("select");
+  if (opcional) select.append(new Option("nenhum", ""));
+  listas.forEach((lista, i) => {
+    const destino = listas.length > 1 ? document.createElement("optgroup") : select;
+    if (destino !== select) destino.label = i ? "animados" : "parados";
+    lista.forEach((peca) => destino.append(new Option(peca.id, peca.id)));
+    if (destino !== select) select.append(destino);
+  });
+  select.addEventListener("change", () => {
+    if (campo === "fundo") {
+      comFundo = select.value !== "";
+      marcarFundo();
+    }
+    personalizado = lerEditor();
+    mostrar();
+  });
+  const label = document.createElement("label");
+  label.innerHTML = `<span>--${rotulo}</span>`;
+  label.append(select);
+  editor.append(label);
+  seletores[campo] = select;
+}
+
+const acharPeca = (campo, id) => CAMPOS.find((c) => c.campo === campo).listas.flat().find((p) => p.id === id);
+
+function lerEditor() {
+  const valor = (campo) => seletores[campo].value || null;
+  return {
+    rosto: valor("rosto"),
+    paleta: valor("paleta"),
+    olhos: valor("olhos"),
+    boca: valor("boca"),
+    chapeu: valor("chapeu"),
+    fundo: valor("fundo"),
+    extras: Object.fromEntries(CATEGORIAS_EXTRAS.map((c) => [c, valor(`extra-${c}`)])),
+  };
+}
+
+function aplicar(escolha, p) {
+  return {
+    rosto: acharPeca("rosto", p.rosto) ?? escolha.rosto,
+    paleta: acharPeca("paleta", p.paleta) ?? escolha.paleta,
+    olhos: acharPeca("olhos", p.olhos) ?? escolha.olhos,
+    boca: acharPeca("boca", p.boca) ?? escolha.boca,
+    chapeu: p.chapeu ? acharPeca("chapeu", p.chapeu) : undefined,
+    fundo: (p.fundo && acharPeca("fundo", p.fundo)) || escolha.fundo,
+    extras: CATEGORIAS_EXTRAS.map((c) => p.extras[c] && acharPeca(`extra-${c}`, p.extras[c])).filter(Boolean),
+  };
+}
+
+function preencherEditor(escolha) {
+  seletores.rosto.value = escolha.rosto.id;
+  seletores.paleta.value = escolha.paleta.id;
+  seletores.olhos.value = escolha.olhos.id;
+  seletores.boca.value = escolha.boca.id;
+  seletores.chapeu.value = escolha.chapeu?.id ?? "";
+  seletores.fundo.value = escolha.fundo?.id ?? "";
+  for (const c of CATEGORIAS_EXTRAS) seletores[`extra-${c}`].value = escolha.extras.find((e) => e.categoria === c)?.id ?? "";
+}
+
+function lerUrl() {
+  const params = new URLSearchParams(location.search);
+  if (!params.has("rosto")) return null;
+  const extras = Object.fromEntries(CATEGORIAS_EXTRAS.map((c) => [c, null]));
+  for (const id of (params.get("extras") ?? "").split(",")) {
+    const extra = catalogo.pecas.extras.find((e) => e.id === id);
+    if (extra) extras[extra.categoria] = id;
+  }
+  const fundo = params.get("fundo");
+  return {
+    rosto: params.get("rosto"),
+    paleta: params.get("paleta"),
+    olhos: params.get("olhos"),
+    boca: params.get("boca"),
+    chapeu: params.get("chapeu") === "nenhum" ? null : params.get("chapeu"),
+    fundo: fundo && fundo !== "nao" ? fundo : null,
+    extras,
+  };
+}
+
+function marcarEditar() {
+  botaoEditar.textContent = editor.hidden ? "[ ] editar" : "[x] editar";
+  botaoEditar.setAttribute("aria-pressed", String(!editor.hidden));
+}
+
+botaoEditar.addEventListener("click", () => {
+  editor.hidden = !editor.hidden;
+  marcarEditar();
+});
+
 campo.value = new URLSearchParams(location.search).get("seed") ?? "zrdep";
+personalizado = lerUrl();
+editor.hidden = !personalizado;
+marcarEditar();
 marcarFundo();
 mostrar();
