@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>alienzinhos</title>
+<meta name="description" content="Digite um nome e veja o seu alien em pixel art.">
+<link rel="icon" href="docs/zorp/zorp.svg" type="image/svg+xml">
+<style>
+  :root {
+    --fundo: #010409;
+    --janela: #0d1117;
+    --barra: #161b22;
+    --borda: #30363d;
+    --texto: #c9d1d9;
+    --fraco: #8b949e;
+    --verde: #7ee787;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    background: var(--fundo);
+    color: var(--texto);
+    font: 15px/1.5 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  }
+  main { width: 100%; max-width: 520px; }
+  .janela { background: var(--janela); border: 1px solid var(--borda); border-radius: 12px; overflow: hidden; }
+  .barra {
+    display: flex; align-items: center; gap: 8px;
+    padding: 12px 14px;
+    background: var(--barra);
+    border-bottom: 1px solid var(--borda);
+    color: var(--fraco); font-size: 13px;
+  }
+  .barra i { width: 12px; height: 12px; border-radius: 50%; background: var(--borda); }
+  .barra span { flex: 1; text-align: center; margin-right: 52px; }
+  .corpo { padding: 24px; }
+  label { display: flex; align-items: center; white-space: nowrap; }
+  .p { color: var(--verde); margin-right: 1ch; }
+  input {
+    flex: 1; min-width: 0;
+    background: none; border: 0; outline: 0;
+    color: var(--verde); caret-color: var(--texto);
+    font: inherit;
+  }
+  input::placeholder { color: var(--borda); }
+  .info { color: var(--fraco); min-height: 1.5em; margin: 4px 0 12px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  #alien { width: 100%; max-width: 300px; aspect-ratio: 1; margin: 0 auto; }
+  #alien svg { width: 100%; height: 100%; display: block; }
+  .acoes { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-top: 16px; }
+  button {
+    background: none; border: 1px solid var(--borda); border-radius: 6px;
+    color: var(--texto); font: inherit; font-size: 13px;
+    padding: 6px 12px; cursor: pointer;
+  }
+  button:hover, button:focus-visible { border-color: var(--verde); color: var(--verde); outline: 0; }
+  footer { text-align: center; color: var(--fraco); font-size: 12px; margin-top: 16px; }
+  footer a { color: inherit; }
+</style>
+</head>
+<body>
+<main>
+  <div class="janela">
+    <div class="barra"><i></i><i></i><i></i><span>~/alienzinhos</span></div>
+    <div class="corpo">
+      <label><span class="p">$</span>curl /alien/<input id="seed" maxlength="100" autocomplete="off" spellcheck="false" placeholder="seu-nome" aria-label="nome"></label>
+      <div class="info" id="info"></div>
+      <div id="alien"></div>
+      <div class="acoes">
+        <button id="aleatorio">aleatório</button>
+        <button id="baixar">baixar svg</button>
+        <button id="copiar">copiar link</button>
+      </div>
+    </div>
+  </div>
+  <footer>feito por <a href="https://github.com/zrdep/alienzinhos">zrdep</a></footer>
+</main>
+
+<script type="module">
+  const json = (caminho) => fetch(caminho).then((r) => r.json());
+  const textos = new Map();
+  const svgDe = (peca) => {
+    if (!textos.has(peca.arquivo)) textos.set(peca.arquivo, fetch(peca.arquivo).then((r) => r.text()));
+    return textos.get(peca.arquivo);
+  };
+
+  const [rostos, acessorios, animados, extras, paletas] = await Promise.all(
+    ["rostos", "acessorios", "animados", "extras", "paletas"].map((n) => json(`data/${n}.json`)),
+  );
+
+  const catalogo = {
+    pecas: {
+      rostos: rostos.rostos,
+      bocas: acessorios.bocas,
+      olhos: acessorios.olhos,
+      "olhos-animados": animados.olhos,
+      extras: extras.extras,
+      chapeus: acessorios.chapeus,
+      "chapeus-animados": animados.chapeus,
+    },
+    paletas: paletas.paletas,
+  };
+
+  const CATEGORIAS_EXTRAS = ["bochechas", "rosto", "flutuante", "pescoco"];
+
+  function hash(texto) {
+    let h = 2166136261;
+    for (let i = 0; i < texto.length; i++) {
+      h ^= texto.charCodeAt(i);
+      h = Math.imul(h, 16777619);
+    }
+    return h >>> 0;
+  }
+
+  function criarAleatorio(seed) {
+    let estado = hash(seed);
+    return () => {
+      estado = (estado + 0x6d2b79f5) >>> 0;
+      let t = estado;
+      t = Math.imul(t ^ (t >>> 15), t | 1);
+      t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+  }
+
+  function sortearAlien(seed, { pecas, paletas }) {
+    const aleatorio = criarAleatorio(seed);
+    const chance = (p) => aleatorio() < p;
+    const escolher = (lista) => lista[Math.floor(aleatorio() * lista.length)];
+
+    const rosto = escolher(pecas.rostos);
+    const paleta = escolher(paletas);
+    const boca = escolher(pecas.bocas);
+    const olhos = chance(0.25) ? escolher(pecas["olhos-animados"]) : escolher(pecas.olhos);
+
+    const extras = [];
+    for (const categoria of CATEGORIAS_EXTRAS) {
+      if (!chance(0.3)) continue;
+      const extra = escolher(pecas.extras.filter((e) => e.categoria === categoria));
+      if (extra.cobre?.length && !chance(0.4)) continue;
+      extras.push(extra);
+    }
+
+    let chapeu;
+    if (chance(0.8)) {
+      chapeu = chance(0.25) ? escolher(pecas["chapeus-animados"]) : escolher(pecas.chapeus);
+    }
+
+    return { rosto, paleta, boca, olhos, extras, chapeu };
+  }
+
+  const conteudo = (svg) =>
+    svg.match(/<svg[^>]*>([\s\S]*)<\/svg>/)[1].replace(/<metadata>[\s\S]*?<\/metadata>/, "").trim();
+
+  async function montarAlien(escolha, tamanho = 256) {
+    const lista = [escolha.rosto, escolha.boca, escolha.olhos, ...escolha.extras];
+    if (escolha.chapeu) lista.push(escolha.chapeu);
+
+    const camadas = (await Promise.all(lista.map(svgDe))).map(conteudo);
+    const estilo = Object.entries(escolha.paleta.cores).map(([classe, cor]) => `.${classe}{fill:${cor}}`).join("");
+    camadas[0] = camadas[0].replace(/<style>[\s\S]*?<\/style>/, `<style>${estilo}</style>`);
+
+    return [
+      `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="${tamanho}" height="${tamanho}" shape-rendering="crispEdges">`,
+      ...camadas,
+      "</svg>",
+    ].join("\n");
+  }
+
+  const campo = document.querySelector("#seed");
+  const info = document.querySelector("#info");
+  const alien = document.querySelector("#alien");
+  let svgAtual = "";
+  let pedido = 0;
+  let espera;
+
+  async function mostrar() {
+    const seed = campo.value.trim().slice(0, 100);
+    const meu = ++pedido;
+    const escolha = sortearAlien(seed, catalogo);
+    const svg = await montarAlien(escolha);
+    if (meu !== pedido) return;
+
+    svgAtual = svg;
+    alien.innerHTML = svg;
+    info.textContent = `→ ${escolha.rosto.id} · ${escolha.paleta.id} · ${escolha.chapeu?.id ?? "sem chapéu"}`;
+
+    const url = new URL(location.href);
+    seed ? url.searchParams.set("seed", seed) : url.searchParams.delete("seed");
+    history.replaceState(null, "", url);
+  }
+
+  campo.addEventListener("input", () => {
+    clearTimeout(espera);
+    espera = setTimeout(mostrar, 120);
+  });
+
+  document.querySelector("#aleatorio").addEventListener("click", () => {
+    campo.value = Math.random().toString(36).slice(2, 8);
+    mostrar();
+  });
+
+  document.querySelector("#baixar").addEventListener("click", () => {
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(new Blob([svgAtual], { type: "image/svg+xml" }));
+    link.download = `alien-${campo.value.trim() || "zrdep"}.svg`;
+    link.click();
+    URL.revokeObjectURL(link.href);
+  });
+
+  document.querySelector("#copiar").addEventListener("click", async (e) => {
+    await navigator.clipboard.writeText(location.href);
+    e.target.textContent = "copiado";
+    setTimeout(() => (e.target.textContent = "copiar link"), 1500);
+  });
+
+  campo.value = new URLSearchParams(location.search).get("seed") ?? "zrdep";
+  mostrar();
+</script>
+</body>
+</html>
