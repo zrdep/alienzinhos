@@ -75,6 +75,7 @@ as camadas são empilhadas nessa ordem, e as animações rodam só com css dentr
 assets/      svgs de cada camada
 data/        paletas e metadados
 docs/        banner, zorp e grade
+pagina/      css e js da página de teste
 src/         api
 index.html   página de teste (github pages)
 ```
