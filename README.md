@@ -1,10 +1,26 @@
 <div align="center">
   <img src="docs/banner.svg" alt="alienzinhos: uma seed entra, um alien sai" width="840">
+
+  <br><br>
+
+  <img src="docs/zorp/zorp.svg" width="44" alt="">
+  <img src="docs/zorp/festa.svg" width="44" alt="">
+  <img src="docs/zorp/estiloso.svg" width="44" alt="">
+  <img src="docs/zorp/amor.svg" width="44" alt="">
+  <img src="docs/zorp/curioso.svg" width="44" alt="">
+  <img src="docs/zorp/sono.svg" width="44" alt="">
+  <img src="docs/zorp/bug.svg" width="44" alt="">
+
+  <sub>esse é o zorp, o mascote. ele aparece por aí.</sub>
+
+  <br><br>
+
+  **[▸ testar com o seu nome](https://zrdep.github.io/alienzinhos/)**
 </div>
 
 <br>
 
-### ▸ sobre
+### <img src="docs/zorp/zorp.svg" width="28" align="center" alt=""> sobre
 
 ```txt
 uma seed entra, um alien sai.
@@ -15,7 +31,7 @@ mesma seed, mesmo alien. sempre.
 +2 bilhões de combinações
 ```
 
-### ▸ uso
+### <img src="docs/zorp/ideia.svg" width="28" align="center" alt=""> uso
 
 ```bash
 GET /alien/:seed                # svg do alien
@@ -28,7 +44,7 @@ como a resposta é uma imagem, dá pra colocar em qualquer lugar:
 ![meu alien](https://seu-dominio/alien/seu-nome)
 ```
 
-### ▸ rodando
+### <img src="docs/zorp/festa.svg" width="28" align="center" alt=""> rodando
 
 ```bash
 git clone https://github.com/zrdep/alienzinhos.git
@@ -38,7 +54,7 @@ npm i && npm run dev
 # → http://localhost:3000/alien/zrdep
 ```
 
-### ▸ como funciona
+### <img src="docs/zorp/curioso.svg" width="28" align="center" alt=""> como funciona
 
 ```txt
 seed ─► hash ─► sorteio ─┬─ rosto + paleta
@@ -53,21 +69,24 @@ seed ─► hash ─► sorteio ─┬─ rosto + paleta
 
 as camadas são empilhadas nessa ordem, e as animações rodam só com css dentro do svg.
 
-### ▸ estrutura
+### <img src="docs/zorp/estiloso.svg" width="28" align="center" alt=""> estrutura
 
 ```txt
-assets/    svgs de cada camada
-data/      paletas e metadados
-docs/      banner e grade
-src/       api
+assets/      svgs de cada camada
+data/        paletas e metadados
+docs/        banner, zorp e grade
+src/         api
+index.html   página de teste (github pages)
 ```
 
-### ▸ peças novas
+### <img src="docs/zorp/amor.svg" width="28" align="center" alt=""> peças novas
 
 toda peça é desenhada numa grade de 64×64 com zonas fixas pra olhos, boca e chapéu. use o [`docs/guia-grade.svg`](docs/guia-grade.svg) como camada de referência no editor.
 
 <br>
 
 <div align="center">
-<sub>MIT · feito por <a href="https://github.com/zrdep">zrdep</a></sub>
+  <img src="docs/zorp/sono.svg" width="36" alt="">
+  <br>
+  <sub><a href="LICENSE">MIT</a> · feito por <a href="https://github.com/zrdep">zrdep</a></sub>
 </div>
